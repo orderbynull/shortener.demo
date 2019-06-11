@@ -11,7 +11,7 @@ type shortener interface {
 	Resolve(url string) string
 }
 
-// tinyUrl это экспортируемая структура, которая реализует методы интерфейса shortener.
+// tinyUrl структура, которая реализует методы интерфейса shortener.
 type tinyUrl struct {
 	host    string
 	hashLen int
