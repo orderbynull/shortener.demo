@@ -11,26 +11,26 @@ type shortener interface {
 	Resolve(url string) string
 }
 
-// TinyUrl это экспортируемая структура, которая реализует методы интерфейса shortener.
-type TinyUrl struct {
+// tinyUrl это экспортируемая структура, которая реализует методы интерфейса shortener.
+type tinyUrl struct {
 	host    string
 	hashLen int
 	storage map[string]string
 }
 
-// NewTinyUrl создает новый инстанс TinyUrl.
-func NewTinyUrl(host string, hashLen int) *TinyUrl {
-	return &TinyUrl{host, hashLen, map[string]string{}}
+// NewTinyUrl создает новый инстанс tinyUrl.
+func NewTinyUrl(host string, hashLen int) *tinyUrl {
+	return &tinyUrl{host, hashLen, map[string]string{}}
 }
 
 // hash возвращает хеш url'а.
-func (t *TinyUrl) hash(url string) string {
+func (t *tinyUrl) hash(url string) string {
 	return uniuri.NewLen(t.hashLen)
 }
 
 // Shorten сохраняет связь между исходным и сокращенным url'ами
 // в inMemory-хранилище и возвращает сокращенный url.
-func (t *TinyUrl) Shorten(url string) string {
+func (t *tinyUrl) Shorten(url string) string {
 	shorted := fmt.Sprintf("%s/%s", t.host, t.hash(url))
 
 	t.storage[shorted] = url
@@ -39,7 +39,7 @@ func (t *TinyUrl) Shorten(url string) string {
 }
 
 // Resolve возвращает исходный url по его сокращенной версии.
-func (t *TinyUrl) Resolve(url string) string {
+func (t *tinyUrl) Resolve(url string) string {
 	if value, ok := t.storage[url]; ok {
 		return value
 	}
