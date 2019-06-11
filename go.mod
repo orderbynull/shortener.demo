@@ -1,4 +1,4 @@
-module github.com/orderbynull/otus-golang/shortener
+module github.com/orderbynull/shortener.demo
 
 go 1.12
 
