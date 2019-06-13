@@ -40,8 +40,5 @@ func (t *tinyUrl) Shorten(url string) string {
 
 // Resolve возвращает исходный url по его сокращенной версии.
 func (t *tinyUrl) Resolve(url string) string {
-	if value, ok := t.storage[url]; ok {
-		return value
-	}
-	return ""
+	return t.storage[url]
 }
